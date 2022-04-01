@@ -56,6 +56,17 @@ services:
     networks:
       - cem-network
 
+  sales-rabbit:
+    image: rabbitmq:3-management
+    container_name: cem-sales-rabbit
+    hostname: cem-sales-rabbit
+    ports:
+      - '5672:5672'
+      - '25676:25676'
+      - '15672:15672'
+    networks:
+      - cem-network
+
 networks:
   cem-network:
     driver: bridge
