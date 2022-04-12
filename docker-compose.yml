@@ -13,6 +13,18 @@ services:
     networks:
       - cem-network
 
+  auth-api:
+    build:
+      context: ./auth-api
+      dockerfile: Dockerfile
+    image: auth-api
+    container_name: cem-auth-api
+    restart: unless-stopped
+    ports:
+      - '${AUTH_API_PORT}:80'
+    networks:
+      - cem-network
+
   auth-db:
     image: postgres:11
     container_name: cem-authdb
@@ -24,6 +36,18 @@ services:
       - '${DB_AUTH_PORT}:5432'
     volumes:
       - /var/lib/postgresql/authdb/data:/var/lib/postgresql/data
+    networks:
+      - cem-network
+
+  product-api:
+    build:
+      context: ./product-api
+      dockerfile: Dockerfile
+    image: product-api
+    container_name: cem-product-api
+    restart: unless-stopped
+    ports:
+      - '${PRODUCT_API_PORT}:80'
     networks:
       - cem-network
   
@@ -38,6 +62,18 @@ services:
       - '${DB_PRODUCT_PORT}:5432'
     volumes:
       - /var/lib/postgresql/productdb/data:/var/lib/postgresql/data
+    networks:
+      - cem-network
+
+  sales-api:
+    build:
+      context: ./sales-api
+      dockerfile: Dockerfile
+    image: sales-api
+    container_name: cem-sales-api
+    restart: unless-stopped
+    ports:
+     - '${SALES_API_PORT}:80'
     networks:
       - cem-network
 

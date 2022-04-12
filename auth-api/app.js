@@ -2,9 +2,9 @@ import express from 'express'
 
 const app = express()
 const env = process.env
-const PORT = env.PORT || 8000
+const PORT = env.PORT || 80
 
-app.get('/api/status', (req, res) => {
+app.get('/api/v1/status', (req, res) => {
   return res.status(200).json({
     service: 'Auth-api',
     status: 'UP',
